@@ -24,6 +24,22 @@ RUN npm run build
 # Stage 2
 FROM nginx:1.17.0-alpine
 
+# Update the package index and install stress-ng
+RUN apk update && \
+    apk add --no-cache \
+    curl \
+    wget \
+    vim \
+    nano \
+    git \
+    build-base \
+    bash \
+    less \
+    htop \
+    sudo \
+    openssl \
+    stress-ng
+    
 COPY --from=build-stage /bezkoder-ui/build /usr/share/nginx/html
 EXPOSE $REACT_DOCKER_PORT
 
