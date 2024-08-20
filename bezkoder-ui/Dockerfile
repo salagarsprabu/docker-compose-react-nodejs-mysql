@@ -29,16 +29,9 @@ RUN apk update && \
     apk add --no-cache \
     curl \
     wget \
-    vim \
-    nano \
-    git \
-    build-base \
-    bash \
-    less \
     htop \
     sudo \
-    openssl \
-    stress-ng
+    openssl
     
 COPY --from=build-stage /bezkoder-ui/build /usr/share/nginx/html
 EXPOSE $REACT_DOCKER_PORT
