@@ -2,6 +2,16 @@
 FROM node:14 as build-stage
 
 WORKDIR /bezkoder-ui
+
+# Install necessary system packages and tools to perform chaos tests
+RUN apt-get update && \
+    apt-get install -y \
+    curl \
+    stress \
+    iproute2 \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
+    
 COPY package.json .
 RUN npm install
 COPY . .
